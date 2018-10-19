@@ -1,0 +1,396 @@
+import { FullScreenCode, Main, Section, SectionInverted } from 'gatsby-mdx-theme'
+import { FaChevronDown } from 'react-icons/fa'
+import { Shell, Output } from '../components'
+
+export default Main
+
+# Beyond Static
+
+## Dustin Schau
+
+---
+
+## Gatsby excels at creating static _sites_
+
+### It's possibly even what got you into Gatsby!
+
+---
+
+## React, GraphQL, and NodeJS
+
+### 😍
+
+---
+
+## GraphQL at **build** time
+
+---
+
+export default FullScreenCode
+
+```jsx
+export const pageQuery = graphql`
+  query GetMyDataPlease {
+    site {
+      siteMetadata {
+        pageTitle
+      }
+    }
+  }
+`
+```
+
+---
+
+export default FullScreenCode
+
+```jsx
+function App({ data }) {
+  return <h1>{data.site.siteMetadata.pageTitle}</h1>
+}
+```
+
+---
+
+## source plugins supercharge this idea
+
+---
+
+### `gatsby-source-wordpress`
+
+### `gatsby-source-contentful`
+
+### `gatsby-source-graphql`
+
+### [insert your data layer here]
+
+<FaChevronDown size={48} color="#663399" />
+
+### Query it with GraphQL at build time
+
+---
+
+## `gatsby-source-graphql`
+
+### Some of you may have a GraphQL endpoint
+
+---
+
+## Tired
+
+### Writing a source plugin for _every_ data source
+
+## Wired
+
+### Using `gatsby-source-graphql` for GraphQL APIs
+
+---
+
+export default FullScreenCode
+
+```js
+{
+  resolve: 'gatsby-source-graphql',
+  options: {
+    typeName: 'GitHub',
+    fieldName: 'github',
+    url: 'https://api.github.com/graphql',
+    headers: {
+      Authorization: `bearer ${process.env.GITHUB_API_TOKEN}`,
+    },
+  },
+}
+```
+
+---
+
+export default FullScreenCode
+
+```jsx
+export const pageQuery = graphql`
+  query GetGithubDataEzPz {
+    github {
+      repository(owner: "dschau", repo: "gatsby-mail") {
+        stargazers {
+          totalCount
+        }
+      }
+    }
+  }
+`
+```
+
+---
+
+### Gatsby is truly excellent for static sites
+
+### ... but!
+
+---
+
+## It's for web apps, too.
+
+### 🤔
+
+## Let's move _beyond static_, but first!
+
+---
+
+export default SectionInverted
+
+## What the hell even is a web app?
+
+---
+
+## Dynamic data?
+
+---
+
+## Client-side JS interactions?
+
+## Animations?
+
+---
+
+## Service workers?
+
+## A manifest file?
+
+---
+
+## ... using _the_ platform?
+
+---
+
+> ... and perhaps I could never succeed in intelligibly doing so [defining the concept]. But I know it when I see it.
+> - Justice Potter Stewart
+
+---
+
+### Add Gmail, Twitter, etc.
+
+---
+
+## Gatsby enables web-app functionality
+
+---
+
+## Dynamic data?
+
+### By default, with the full power of the React ecosystem
+
+---
+
+## Hydration
+
+### Often overlooked, Gatsby isn't _just_ static.
+
+### It's SSR rendered (to static content) with a React runtime
+
+### React picks up where we left off
+
+---
+
+1. SSR render to static HTML
+1. Static HTML is picked up by React reconciler
+1. Pick up where we left off
+
+---
+
+## Pick up where we left off
+
+### 🔑
+
+---
+
+## The best of both 🌎
+
+### Statically rendered: maximize SEO, TTI, general web perf.
+
+### Dynamic web app: fetch data, authentication, dynamic interactions, etc.
+
+---
+
+## 👭 👬
+
+---
+
+export default FullScreenCode
+
+```jsx
+class DynamicAmirite extends Component {
+  render() {
+    const { data } = this.props;
+    const { moreData = [] } = this.state;
+    return (
+      <ul>
+        {
+          data.allYourData.edges
+            .concat(moreData)
+            .map(({ node }) => <li key={node.id}>{node.text}</li>)
+        }
+      </ul>
+    );
+  }
+}
+```
+---
+
+export default FullScreenCode
+
+```jsx
+class DynamicAmirite extends Component {
+  async componentDidMount() {
+    const latest = data.allYourData.latest
+    const moreData = await fetch(`/your-endpoint/data?latest=${latest}`)
+      .then(response => response.json())
+
+    this.setState({
+      moreData
+    })
+  }
+}
+```
+---
+
+## Once hydrated:
+
+```js
+return gatsby === dynamicWebApp
+```
+
+<Output result="true" />
+
+---
+
+## A Gatsby "site" is a hybrid app
+
+### Static site + dynamic runtime = 😍
+
+---
+
+## Render as much, up front, as possible _statically_
+
+### Then: pick up where we left off
+
+---
+
+## Traditional app-like features are easier than you think
+
+---
+
+## Use cases for web apps
+
+---
+
+## Authentication
+
+### ✅
+
+---
+
+### Auth0
+
+### Passport.js
+
+### Your own, in-house solution
+
+### If there's an API for it, you can implement authentication
+
+---
+
+1. Render a static shell (as much as possible!)
+1. Use an `Authentication` provider to restrict content that shouldn't be visible
+1. Once authenticated, show content, use auth data to call APIs, etc.
+
+---
+
+<Shell />
+
+---
+
+## Dynamic Data
+
+### ✅
+
+---
+
+## `apollo-client`
+
+## `componentDidMount`
+
+---
+
+<Shell fetch={true} />
+
+<!-- TODO: get animation working and only start on mount -->
+
+---
+
+## Fetch as much data, up front, as possible
+
+### Then: hydrate, and fetch more
+
+---
+
+## The _best_ of both 🌎
+
+### Maximize perf. but keep content up-to-date
+
+---
+
+## PWA
+
+### Let's _use_ the platform
+
+---
+
+### `gatsby-plugin-offline`
+
+### `gatsby-plugin-manifest`
+
+---
+
+## e-commerce
+
+### ✅
+
+---
+
+## Oftentimes, data is more static than initially realized
+
+### Additionally: gatsby provides great tooling to get some easy wins
+
+---
+
+## Again:
+
+### Fetch as much data, as possible
+
+### Pick up where we left off
+
+---
+
+## Gatsby provides plugins, patterns, libraries, and more
+
+### Use them!
+
+---
+
+## `gatsby-image` = 💜
+
+### Show example
+
+---
+
+## The _platform_
+
+### ✅
+
+---
+
+### Blazing fast performance, by default 🔋 ⚡
+
+### Offline = `gatsby-plugin-offline`
+
+### Manifest = `gatsby-plugin-manifest`

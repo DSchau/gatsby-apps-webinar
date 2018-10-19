@@ -1,0 +1,147 @@
+import { FullScreenCode, Main, Section, SectionInverted } from 'gatsby-mdx-theme'
+import { No } from '../components'
+
+export default SectionInverted
+
+## A Gatsby Web App
+
+### Story time
+
+---
+
+## We love Gatsby
+
+### It makes static sites _easy_
+
+---
+
+## Our site needs meta tags and some content for a landing page
+
+### Gotta generate some hype!
+
+### 🤑 💸 💰
+
+---
+
+## We start with some plugins:
+
+- `gatsby-source-filesystem`
+- `gatsby-source-transformer-yaml`
+- `gatsby-transformer-remark`
+
+---
+
+export default FullScreenCode
+
+```yaml
+description: >
+  The new product from our awesome company is going to revolutionize...
+  something! Just wait!
+twitter: schaudustin
+title: Our great product
+```
+
+---
+
+export default FullScreenCode
+
+```jsx
+export const pageQuery = graphql`
+  query GetMyMetaDetailsYo {
+    metaYaml {
+      description
+      twitter
+      title
+    }
+  }
+`;
+```
+
+---
+
+export default FullScreenCode
+
+```jsx
+import Helmet from 'react-helmet';
+
+function Meta({ additional }) {
+  return (
+    <StaticQuery
+      graphql={query}
+      render={data => (
+        <Helmet
+          title={data.metaYaml.title}
+          meta={
+            [
+              { name: 'description', content: data.metaYaml.description }
+              { name: 'twitter:creator', content: data.metaYaml.twitter }
+              // you get the idea
+            ].concat(additional)
+          }
+        />
+      )}
+    />
+  )
+}
+```
+
+---
+
+## We love Markdown, too
+
+---
+
+export default FullScreenCode
+
+```markdown
+\-\-\-
+title: "Why our product is the bee's knees"
+\-\-\-
+
+Because it is, trust me!
+
+![Some image showing it's great](./images/trust-us.jpg)
+```
+
+---
+
+export default FullScreenCode
+
+```jsx
+export const pageQuery = graphql`
+  query LandingPageQuery {
+    file(relativePath: { eq: "why-were-awesome.md" }) {
+      childMarkdownRemark {
+        html
+      }
+    }
+  }
+`;
+```
+
+## Show example of Markdown page
+
+---
+
+## While we're doing this, we're building out some great APIs _for_ the product
+
+### In GraphQL, because you know, it's the best.
+
+---
+
+## Our landing page is slick
+
+### But now we need an _app_
+
+---
+
+# Time to re-write in Next.js
+
+---
+
+<No />
+
+---
+
+## Gatsby scales for web apps
+
