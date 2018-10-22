@@ -16,9 +16,8 @@ import conclusion from './topics/conclusion.mdx'
 export { default as theme } from 'gatsby-mdx-theme'
 export default [
   ...intro,
-  ...caseStudies,
   ...webApps,
-  ...webApp,
+  ...caseStudies,
   ...demo,
   ...qAndA,
   ...conclusion

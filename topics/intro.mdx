@@ -1,5 +1,6 @@
 import { Head } from 'mdx-deck'
 import { FullScreenCode, Main, Section, SectionInverted } from 'gatsby-mdx-theme'
+import { Presenter, Presenters } from '../components'
 
 export default Main
 
@@ -16,6 +17,29 @@ export default Main
   <meta name='twitter:image' content="https://www.gatsbyjs.com/gatsby.jpg" />
 </Head>
 ---
+
+export default Section
+
+## Welcome
+
+---
+
+## Presenters
+
+<Presenters>
+  <Presenter image="static/images/linda.jpg" name="Linda Watkins" title="Director of Marketing" />
+  <Presenter image="static/images/dustin.png" name="Dustin Schau" title="Software Engineer" />
+</Presenters>
+---
+
+## Panelists
+
+<Presenters>
+  <Presenter image="static/images/sam.jpg" name="Sam Bhagwat" title="Co-founder and Head of Enterprise" />
+  <Presenter image="static/images/kyle.jpg" name="Kyle Matthews" title="Co-founder and CEO" />
+</Presenters>
+---
+
 export default Section
 
 # Introductions
