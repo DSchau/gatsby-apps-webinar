@@ -21,7 +21,7 @@
     "style-loader": "^0.23.0"
   },
   "dependencies": {
-    "gatsby-mdx-theme": "^0.0.5",
+    "gatsby-mdx-theme": "^0.0.6",
     "react-icons": "^3.2.1",
     "typeface-space-mono": "^0.0.54",
     "typeface-spectral": "^0.0.54"

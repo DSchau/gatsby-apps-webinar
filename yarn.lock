@@ -2680,10 +2680,10 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-gatsby-mdx-theme@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/gatsby-mdx-theme/-/gatsby-mdx-theme-0.0.5.tgz#0c2a77fca5167c9a07bbb58d0a1a5b9bf344c265"
-  integrity sha512-8fX1UVJ+a79Hc3Fn8UmlOlSK+sr9JY8TkvlBVSIzNAthQRinTdpZ7Tpo7wbmv5G6FZLlixJSM4SNI/3vNBVmqQ==
+gatsby-mdx-theme@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/gatsby-mdx-theme/-/gatsby-mdx-theme-0.0.6.tgz#208755da01c12630a857cf961d430b6f0b0078f5"
+  integrity sha512-e/dHTfNMjMF9syLUdwUuFEuwceyWdV9MsLYn6x2jnRN2FfDVn2wPyoQGDS+WJ7XuUYP5frcL5wddeNk/Mw3YNA==
 
 gauge@~2.7.3:
   version "2.7.4"
