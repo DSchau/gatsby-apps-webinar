@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 const APPEAR = keyframes`
   from {
@@ -9,14 +9,38 @@ const APPEAR = keyframes`
   }
 `;
 
+const APPEAR_LOOP = keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+const APPEAR_IN = keyframes`
+  from {
+    background-color: red;
+  } to {
+    background-color: black;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 50vh;
-  width: 50vw;
+  height: 100%;
+  width: 100%;
 
   background-color: #CCC;
   position: relative;
+
+  ${props => css`
+    animation: ${props.server ? `${APPEAR_LOOP} 2.5s infinite ease-in-out 2.5s normal both` : ``};
+  `}
 `;
 
 const Base = styled.div`
@@ -25,7 +49,7 @@ const Base = styled.div`
 `;
 
 const Header = styled.div`
-  height: 10vh;
+  height: 20%;
   width: 100%;
 
   background-color: #000;
@@ -36,7 +60,7 @@ const Footer = styled(Header)`
 `;
 
 const Sidebar = styled.div`
-  width: 10vw;
+  width: 25%;
   height: 100%;
 
   background-color: #444;
@@ -60,7 +84,9 @@ const Box = styled.div`
   font-size: 48px;
   transition: 1.5s ease-in-out;
 
-  animation: ${props => props.animate && `${APPEAR} 1.5s ease-in-out ${props.delay || 0}ms`} normal both;
+  ${props => props.animate && css`
+    animation: ${`${APPEAR_IN} 3.5s ease-in-out ${props.delay || 0}ms normal both`};
+  `}
 
   background-color: ${props => props.backgroundColor || 'black'};
 `;
@@ -88,11 +114,11 @@ export default class Shell extends React.Component {
   }
 
   render() {
-    const { fetch: shouldFetch } = this.props;
+    const { fetch: shouldFetch, server } = this.props;
     const { loaded } = this.state;
-    const bgColor = loaded ? 'black' : 'red';
+    const bgColor = loaded || server ? 'black' : 'red';
     return (
-      <Container>
+      <Container server={server}>
         <Header />
         <Base>
           <Sidebar />
@@ -101,7 +127,6 @@ export default class Shell extends React.Component {
             {
               shouldFetch === false && (
                 <Box height="50%" backgroundColor={bgColor}>
-              {loaded === false && <Button onClick={this.load}>Login</Button>}
             </Box>
               )
             }
@@ -125,5 +150,6 @@ export default class Shell extends React.Component {
 }
 
 Shell.defaultProps = {
-  fetch: false
+  fetch: false,
+  server: false
 };

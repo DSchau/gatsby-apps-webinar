@@ -1,0 +1,1 @@
+export { default as SplitHeight } from './split-height'

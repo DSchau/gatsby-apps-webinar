@@ -1,12 +1,31 @@
 import { FullScreenCode, Main, Section, SectionInverted } from 'gatsby-mdx-theme'
+import { Appear, Image } from 'mdx-deck'
+import { Split } from 'mdx-deck/layouts'
 import { FaChevronDown } from 'react-icons/fa'
 import { Shell, Output } from '../components'
+import { SplitHeight } from '../layouts'
 
 export default Main
 
 # Beyond Static
 
 ## Dustin Schau
+
+---
+
+export default FullScreenCode
+
+```html
+<div id="___gatsby">
+  <header>
+    <a href="/">Home</a>
+  </header>
+  <main>
+    <h1>Hello World
+  </main>
+  <footer><p>Copyright 2018</p></footer>
+</div>
+```
 
 ---
 
@@ -128,7 +147,7 @@ export const pageQuery = graphql`
 
 ---
 
-## It's for web apps, too.
+## It's excellent for web apps, too.
 
 ### 🤔
 
@@ -138,7 +157,7 @@ export const pageQuery = graphql`
 
 export default SectionInverted
 
-## What the hell even is a web app?
+## What even _is_ a web app?
 
 ---
 
@@ -149,6 +168,10 @@ export default SectionInverted
 ## Client-side JS interactions?
 
 ## Animations?
+
+---
+
+## Authentication?
 
 ---
 
@@ -167,17 +190,23 @@ export default SectionInverted
 
 ---
 
-### Add Gmail, Twitter, etc.
+export default Split
+
+![Gmail](./static/images/gmail.png)
+
+![Twitter](./static/images/twitter.png)
 
 ---
 
-## Gatsby enables web-app functionality
+<Image src="https://i.imgur.com/U3h2pG9.gif" />
 
 ---
 
 ## Dynamic data?
 
 ### By default, with the full power of the React ecosystem
+
+### Gatsby is _just_ React
 
 ---
 
@@ -191,12 +220,6 @@ export default SectionInverted
 
 ---
 
-1. SSR render to static HTML
-1. Static HTML is picked up by React reconciler
-1. Pick up where we left off
-
----
-
 ## Pick up where we left off
 
 ### 🔑
@@ -205,13 +228,9 @@ export default SectionInverted
 
 ## The best of both 🌎
 
-### Statically rendered: maximize SEO, TTI, general web perf.
+### Statically rendered: maximize SEO, TTI, general web perf., easy global distribution, etc.
 
 ### Dynamic web app: fetch data, authentication, dynamic interactions, etc.
-
----
-
-## 👭 👬
 
 ---
 
@@ -255,11 +274,7 @@ class DynamicAmirite extends Component {
 
 ## Once hydrated:
 
-```js
-return gatsby === dynamicWebApp
-```
-
-<Output result="true" />
+### Gatsby produces create-react-app
 
 ---
 
@@ -305,7 +320,18 @@ return gatsby === dynamicWebApp
 
 ---
 
+## The App Shell model
+
+### Load a shell (possibly from service worker)
+
+### _then_ fetch data dynamically
+
+---
+
+export default SplitHeight
+
 <Shell />
+<Shell server={true} />
 
 ---
 
@@ -320,6 +346,8 @@ return gatsby === dynamicWebApp
 ## `componentDidMount`
 
 ---
+
+export default SplitHeight
 
 <Shell fetch={true} />
 
@@ -339,15 +367,7 @@ return gatsby === dynamicWebApp
 
 ---
 
-## PWA
-
-### Let's _use_ the platform
-
----
-
-### `gatsby-plugin-offline`
-
-### `gatsby-plugin-manifest`
+<Image src="static/images/facebook.gif" />
 
 ---
 
@@ -379,11 +399,13 @@ return gatsby === dynamicWebApp
 
 ## `gatsby-image` = 💜
 
-### Show example
+---
+
+<Image src="static/images/gatsby-image.gif" />
 
 ---
 
-## The _platform_
+## Progressive Web App
 
 ### ✅
 
