@@ -9,9 +9,9 @@ const Container = styled.div([], {
 })
 
 const Section = styled.div([], {
+  flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  height: '100%',
   alignItems: 'flex-start',
   justifyContent: 'flex-end',
   paddingLeft: '10vw',

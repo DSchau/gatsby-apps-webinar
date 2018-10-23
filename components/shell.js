@@ -1,31 +1,12 @@
 import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
+import { MdReplay, MdPlayCircleFilled } from 'react-icons/md'
 
 const APPEAR = keyframes`
   from {
     opacity: 0;
   } to {
     opacity: 1;
-  }
-`;
-
-const APPEAR_LOOP = keyframes`
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`;
-
-const APPEAR_IN = keyframes`
-  from {
-    background-color: red;
-  } to {
-    background-color: black;
   }
 `;
 
@@ -38,9 +19,21 @@ const Container = styled.div`
   background-color: #CCC;
   position: relative;
 
-  ${props => css`
-    animation: ${props.server ? `${APPEAR_LOOP} 2.5s infinite ease-in-out 2.5s normal both` : ``};
+  ${props => props.server && !props.loaded && css`
+    background-color: transparent;
   `}
+
+  ${props => props.loaded && props.server && css`
+    animation: ${APPEAR} 1s ease-in-out 1.5s normal both;
+  `}
+`;
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
 `;
 
 const Base = styled.div`
@@ -84,60 +77,71 @@ const Box = styled.div`
   font-size: 48px;
   transition: 1.5s ease-in-out;
 
-  ${props => props.animate && css`
-    animation: ${`${APPEAR_IN} 3.5s ease-in-out ${props.delay || 0}ms normal both`};
+  ${props => props.animate && props.loaded && css`
+    animation: ${APPEAR} 1s ease-in-out ${props.delay || '1.5s'} normal both;
   `}
 
   background-color: ${props => props.backgroundColor || 'black'};
 `;
-
-const Button = styled.button`
-  padding: 1rem 2rem;
-  font-size: 28px;
-
-  background-color: white;
-  color: black;
-  text-transform: uppercase;
-  outline: none;
-  border: none;
-`
 
 export default class Shell extends React.Component {
   state = {
     loaded: false
   };
 
-  load = () => {
-    this.setState({
-      loaded: true
-    })
+  toggleLoad = () => {
+    this.setState(state => ({
+      loaded: !state.loaded
+    }))
   }
 
   render() {
     const { fetch: shouldFetch, server } = this.props;
     const { loaded } = this.state;
-    const bgColor = loaded || server ? 'black' : 'red';
+    const bgColor = loaded || server ? 'black' : 'transparent';
+    if (server && !loaded) {
+      return (
+        <Container server={true} loaded={false} onClick={this.toggleLoad}>
+          <Center>
+            <MdPlayCircleFilled size="10vw" />
+          </Center>
+        </Container>
+      )
+    }
     return (
-      <Container server={server}>
+      <Container server={server} loaded={loaded}>
         <Header />
         <Base>
           <Sidebar />
           <Content>
             <Box height="10%" />
-            {
-              shouldFetch === false && (
-                <Box height="50%" backgroundColor={bgColor}>
-            </Box>
-              )
-            }
-            <Box height="20%" />
+            {!shouldFetch && (
+              <React.Fragment>
+                <Box height="50%" backgroundColor={bgColor} animate={true} loaded={loaded} onClick={this.toggleLoad}>
+                  {loaded ? <MdReplay size="10vw" color="white" /> : <MdPlayCircleFilled size="10vw" color="black" />}
+                </Box>
+                <Box height="30%" />
+              </React.Fragment>
+            )}
             {
               shouldFetch && (
                 <React.Fragment>
-                  {!loaded && <Button onClick={this.load}>fetch data</Button>}
-                  {loaded && new Array(4).fill(undefined).map((_, index) => (
-                    <Box key={index} height="10%" animate={true} delay={500 * index} />
-                  ))}
+                  {loaded ? (
+                    <React.Fragment>
+                      {
+                        new Array(4).fill(undefined).map((_, index) => (
+                          <Box key={index} height={`${67.5 / 4}%`} onClick={this.toggleLoad} animate={true} loaded={true} delay={`${500 * index}ms`} />
+                        ))
+                      }
+                      <Box height="10%" backgroundColor="transparent" onClick={this.toggleLoad}>
+                          <MdReplay size="10vw" color="white" />
+                        </Box>
+                    </React.Fragment>
+                  ) : (
+                    <Box height="90%" backgroundColor="rgba(0, 0, 0, 0)" onClick={this.toggleLoad}>
+                      <MdPlayCircleFilled size="10vw" color="black" />
+                    </Box>
+                  )}
                 </React.Fragment>
               )
             }
