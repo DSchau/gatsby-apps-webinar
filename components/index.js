@@ -1,3 +1,4 @@
+export { default as Emojify } from './emojify'
 export { default as No } from './no'
 export { default as Output } from './output'
 export { default as Presenter } from './presenter'

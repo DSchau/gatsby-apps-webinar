@@ -5080,6 +5080,11 @@ react-dom@^16.4.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
+react-emojione@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-emojione/-/react-emojione-5.0.0.tgz#230fef5e85aa9e1183b9506a15fff37d59ef472f"
+  integrity sha512-+OsHCKgcGdtQVGBYWWFPO7JhS2cevX2S6L3/pR0sah4hJGBM7qU0d2m64p9NYpwu6awH8t+yKArhNc/WHSb8Lg==
+
 react-error-overlay@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.1.tgz#417addb0814a90f3a7082eacba7cee588d00da89"
